@@ -1,0 +1,13 @@
+name: mnist_env
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy=1.23.5
+  - pytorch=2.0.1
+  - torchvision=0.15.2
+  - matplotlib=3.7.2
+  - pandas=2.0.3
+  - psutil=5.9.5
