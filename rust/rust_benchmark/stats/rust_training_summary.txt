@@ -1,0 +1,40 @@
+Training Summary:
+Number of Runs: 3
+Device: cuda
+
+--- Run 1/3 ---
+Total Time: 0.27 seconds
+Final Accuracy: 94.02%
+Average Epoch Time: 0.03 seconds
+Average GPU Utilization: 31.7%
+Average GPU Power Draw: 26.1 W
+Average Process Memory Usage: 873.3 MB
+Peak Process Memory Usage (this run): 998.36 MB
+
+--- Run 2/3 ---
+Total Time: 0.14 seconds
+Final Accuracy: 93.42%
+Average Epoch Time: 0.01 seconds
+Average GPU Utilization: 73.5%
+Average GPU Power Draw: 43.5 W
+Average Process Memory Usage: 998.4 MB
+Peak Process Memory Usage (this run): 998.36 MB
+
+--- Run 3/3 ---
+Total Time: 0.15 seconds
+Final Accuracy: 93.83%
+Average Epoch Time: 0.02 seconds
+Average GPU Utilization: 53.0%
+Average GPU Power Draw: 59.6 W
+Average Process Memory Usage: 998.4 MB
+Peak Process Memory Usage (this run): 998.36 MB
+
+--- Averages over 3 runs ---
+Average Total Time: 0.18 seconds
+Average Final Accuracy: 93.76%
+Average Epoch Time: 0.02 seconds
+Average GPU Utilization: 52.7%
+Average GPU Power Draw: 43.0 W
+Approx Total GPU Energy Consumed (Run 1): 6.97 J
+Average Process Memory Usage: 956.7 MB
+Overall Peak Process Memory Usage: 998.36 MB

@@ -1,0 +1,4 @@
+time,gpu_utilization_percent,gpu_power_watts,memory_mb
+0.00,26.00,20.86,664.86
+0.10,6.00,25.12,956.61
+0.20,63.00,32.26,998.36
