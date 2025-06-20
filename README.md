@@ -1,4 +1,9 @@
-# MNIST Benchmark (Python, C++, Rust)
+# Unlocking Efficiency: A Multi-Language Benchmarking Study on MNIST
+Authored by Vaibhav Satishkumar and Yicheng "Billy" Lu
+
+Cornell arXiv link: \_\_\_\_\_\_*available in a few hours*\_\_\_\_\_\_
+
+## MNIST Benchmark (Python, C++, Rust)
 
 This project contains simple benchmarks for training a model on the MNIST dataset using Python, C++, and Rust.
 
