@@ -1,5 +1,5 @@
 # Unlocking Efficiency: A Multi-Language Benchmarking Study on MNIST
-Authored by Vaibhav Satishkumar and Yicheng "Billy" Lu
+#### Authored by [Vaibhav Satishkumar](https://github.com/Visual-Studio-Coder) and [Yicheng "Billy" Lu](https://github.com/billylu24/)
 
 Cornell arXiv link: \_\_\_\_\_\_*available in a few hours*\_\_\_\_\_\_
 
