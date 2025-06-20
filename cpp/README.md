@@ -1,46 +1,33 @@
 # C++ MNIST Benchmark
 
-## Prerequisites
-- A C++17 compiler
-- CMake (3.10+)
-- [LibTorch](https://pytorch.org/)
-- libcurl
-- (Optional) CUDA Toolkit if you want GPU acceleration
+## What It Does
 
-## Setup
-1. Install dependencies and set up environment variables:
-   ```
-   cd libtorch
-   bash setup.sh
-   ```
-2. Configure the project:
-   ```
-   cd ../cpp_benchmark
-   mkdir build && cd build
-   cmake ..
-   ```
-3. Build:
-   ```
-   make
-   ```
+This program uses LibTorch (the C++ version of PyTorch) to train a simple neural network on the MNIST dataset. It performs the following steps:
+1.  Downloads the MNIST dataset.
+2.  Loads the entire dataset into GPU memory.
+3.  Trains a model for 10 epochs.
+4.  Collects and saves performance stats (time, accuracy, GPU usage, memory) to the `stats/` directory in the project root.
 
-## Running
-```
-./mnist_benchmark
-```
-- Downloads MNIST if missing
-- Trains for 10 epochs
-- Saves metrics in `stats` folder
-- Saves the model to `models`
+## How to Run
 
-## Implementation
-- Uses an MLP with two `torch::nn::Linear` layers.
-- Tracks training/validation accuracies, memory usage, CPU usage.
-- Plots metrics via `plot_metrics.py`.
+### Prerequisites
+- An NVIDIA GPU with CUDA.
+- A C++ compiler, `cmake`, and `libcurl`.
+- A downloaded copy of **LibTorch**. You must set the `LIBTORCH` environment variable to point to the extracted LibTorch directory.
 
-## Plotting Metrics
-Use Python 3 with matplotlib and pandas to visualize metrics:
+### Run Commands
+From the `cpp/` directory, run:
 ```bash
-pip install matplotlib pandas
-python plot_metrics.py
+# Set this to your LibTorch path
+export LIBTORCH=/path/to/your/libtorch
+
+# Build the project
+cd cpp_benchmark
+mkdir -p build
+cd build
+cmake ..
+make
+
+# Run the benchmark
+./mnist_benchmark_cpp
 ```
