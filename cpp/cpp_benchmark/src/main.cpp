@@ -24,7 +24,6 @@ const int BATCH_SIZE = 1024; // Match Rust/Python
 const int IMAGE_SIZE = 28 * 28;
 const int HIDDEN_SIZE = 128;
 const int NUM_CLASSES = 10;
-const int NUM_WORKERS = 2; // Keep at 2 for C++ DataLoader
 
 const std::vector<std::pair<std::string, std::string>> MNIST_URLS = {
     {"https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz", "data/train-images-idx3-ubyte"},
@@ -239,7 +238,7 @@ int main() {
         }
     }
 
-    // Load MNIST dataset and move to device
+    // Load MNIST dataset
     auto train_dataset = torch::data::datasets::MNIST("./data")
                             .map(torch::data::transforms::Normalize<>(0.0, 1.0)) // Normalize
                             .map(torch::data::transforms::Stack<>());
@@ -247,16 +246,20 @@ int main() {
                            .map(torch::data::transforms::Normalize<>(0.0, 1.0)) // Normalize
                            .map(torch::data::transforms::Stack<>());
 
-    // Use BATCH_SIZE and NUM_WORKERS constants
-    auto train_loader = torch::data::make_data_loader(
+    // Pre-load the entire dataset onto the device, removing the need for a DataLoader.
+    std::cout << "Pre-loading dataset to device..." << std::endl;
+    auto train_loader_for_load = torch::data::make_data_loader(
         std::move(train_dataset),
-        torch::data::DataLoaderOptions().batch_size(BATCH_SIZE).workers(NUM_WORKERS));
-    auto test_loader = torch::data::make_data_loader(
+        torch::data::DataLoaderOptions().batch_size(train_dataset.size().value()));
+    auto test_loader_for_load = torch::data::make_data_loader(
         std::move(test_dataset),
-        torch::data::DataLoaderOptions().batch_size(BATCH_SIZE).workers(NUM_WORKERS));
+        torch::data::DataLoaderOptions().batch_size(test_dataset.size().value()));
 
-    // Pre-load test dataset into memory
-    auto test_batch = *test_loader->begin();
+    auto train_batch = *train_loader_for_load->begin();
+    auto all_train_images = train_batch.data.to(device);
+    auto all_train_labels = train_batch.target.to(device);
+
+    auto test_batch = *test_loader_for_load->begin();
     auto all_test_images = test_batch.data.to(device);
     auto all_test_labels = test_batch.target.to(device);
     std::cout << "Dataset pre-loaded." << std::endl;
@@ -303,12 +306,18 @@ int main() {
             model.train();
             double train_correct = 0;
             int64_t train_samples_processed = 0; // Use int64_t
+            int64_t total_train_size = all_train_images.size(0);
 
-            // Train phase
-            for (auto& batch : *train_loader) {
-                // Move data and target to the selected device
-                auto data = batch.data.to(device);
-                auto target = batch.target.to(device);
+            // Manually shuffle and batch the data
+            auto indices = torch::randperm(total_train_size, torch::TensorOptions().dtype(torch::kInt64).device(device));
+
+            for (int64_t i = 0; i < total_train_size; i += BATCH_SIZE) {
+                int64_t end = std::min(i + BATCH_SIZE, total_train_size);
+                if (i >= end) continue;
+
+                auto batch_indices = indices.slice(0, i, end);
+                auto data = all_train_images.index_select(0, batch_indices);
+                auto target = all_train_labels.index_select(0, batch_indices);
 
                 optimizer.zero_grad();
                 auto output = model.forward(data);
@@ -317,7 +326,7 @@ int main() {
                 optimizer.step();
 
                 auto prediction = output.argmax(1);
-                train_correct += prediction.eq(target).sum().item<int64_t>(); // Use int64_t
+                train_correct += prediction.eq(target).sum().item<int64_t>();
                 train_samples_processed += target.size(0);
             }
 
