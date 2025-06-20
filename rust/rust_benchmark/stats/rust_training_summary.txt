@@ -4,37 +4,37 @@ Device: cuda
 
 --- Run 1/3 ---
 Total Time: 0.27 seconds
-Final Accuracy: 93.74%
+Final Accuracy: 93.86%
 Average Epoch Time: 0.03 seconds
-Average GPU Utilization: 33.3%
-Average GPU Power Draw: 28.6 W
-Average Process Memory Usage: 875.0 MB
-Peak Process Memory Usage (this run): 1006.45 MB
+Average GPU Utilization: 34.3%
+Average GPU Power Draw: 29.3 W
+Average Process Memory Usage: 868.3 MB
+Peak Process Memory Usage (this run): 986.61 MB
 
 --- Run 2/3 ---
 Total Time: 0.14 seconds
-Final Accuracy: 93.13%
+Final Accuracy: 93.94%
 Average Epoch Time: 0.01 seconds
-Average GPU Utilization: 70.0%
-Average GPU Power Draw: 44.7 W
-Average Process Memory Usage: 1006.7 MB
-Peak Process Memory Usage (this run): 1006.70 MB
+Average GPU Utilization: 72.5%
+Average GPU Power Draw: 45.7 W
+Average Process Memory Usage: 986.9 MB
+Peak Process Memory Usage (this run): 986.86 MB
 
 --- Run 3/3 ---
 Total Time: 0.14 seconds
-Final Accuracy: 93.82%
+Final Accuracy: 93.54%
 Average Epoch Time: 0.01 seconds
-Average GPU Utilization: 59.5%
-Average GPU Power Draw: 60.1 W
-Average Process Memory Usage: 1006.7 MB
-Peak Process Memory Usage (this run): 1006.70 MB
+Average GPU Utilization: 59.0%
+Average GPU Power Draw: 61.0 W
+Average Process Memory Usage: 986.9 MB
+Peak Process Memory Usage (this run): 986.86 MB
 
 --- Averages over 3 runs ---
 Average Total Time: 0.18 seconds
-Average Final Accuracy: 93.56%
+Average Final Accuracy: 93.78%
 Average Epoch Time: 0.02 seconds
-Average GPU Utilization: 54.3%
-Average GPU Power Draw: 44.5 W
-Approx Total GPU Energy Consumed (Run 1): 7.61 J
-Average Process Memory Usage: 962.8 MB
-Overall Peak Process Memory Usage: 1006.70 MB
+Average GPU Utilization: 55.3%
+Average GPU Power Draw: 45.3 W
+Approx Total GPU Energy Consumed (Run 1): 7.80 J
+Average Process Memory Usage: 947.3 MB
+Overall Peak Process Memory Usage: 986.86 MB

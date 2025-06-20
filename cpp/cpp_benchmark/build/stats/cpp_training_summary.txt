@@ -3,38 +3,38 @@ Number of Runs: 3
 Device: cuda
 
 --- Run 1/3 ---
-Total Time: 0.20 seconds
-Final Accuracy: 93.91%
+Total Time: 0.21 seconds
+Final Accuracy: 94.57%
 Average Epoch Time: 0.02 seconds
-Average GPU Utilization: 22.0%
-Average GPU Power Draw: 25.6 W
-Average Process Memory Usage: 1102.9 MB
-Peak Process Memory Usage (this run): 1134.17 MB
+Average GPU Utilization: 47.0%
+Average GPU Power Draw: 30.6 W
+Average Process Memory Usage: 1113.2 MB
+Peak Process Memory Usage (this run): 1132.59 MB
 
 --- Run 2/3 ---
-Total Time: 0.14 seconds
-Final Accuracy: 93.25%
-Average Epoch Time: 0.01 seconds
-Average GPU Utilization: 80.5%
-Average GPU Power Draw: 39.9 W
-Average Process Memory Usage: 1134.2 MB
-Peak Process Memory Usage (this run): 1134.17 MB
+Total Time: 0.15 seconds
+Final Accuracy: 93.47%
+Average Epoch Time: 0.02 seconds
+Average GPU Utilization: 41.0%
+Average GPU Power Draw: 45.9 W
+Average Process Memory Usage: 1132.6 MB
+Peak Process Memory Usage (this run): 1132.59 MB
 
 --- Run 3/3 ---
-Total Time: 0.14 seconds
-Final Accuracy: 94.07%
-Average Epoch Time: 0.01 seconds
-Average GPU Utilization: 56.0%
-Average GPU Power Draw: 56.4 W
-Average Process Memory Usage: 1134.2 MB
-Peak Process Memory Usage (this run): 1134.17 MB
+Total Time: 0.15 seconds
+Final Accuracy: 93.51%
+Average Epoch Time: 0.02 seconds
+Average GPU Utilization: 56.5%
+Average GPU Power Draw: 62.0 W
+Average Process Memory Usage: 1132.6 MB
+Peak Process Memory Usage (this run): 1132.59 MB
 
 --- Averages over 3 runs ---
-Average Total Time: 0.16 seconds
-Average Final Accuracy: 93.74%
+Average Total Time: 0.17 seconds
+Average Final Accuracy: 93.85%
 Average Epoch Time: 0.02 seconds
-Average GPU Utilization: 52.8%
-Average GPU Power Draw: 40.7 W
-Approx Total GPU Energy Consumed (Run 1): 5.13 J
-Average Process Memory Usage: 1123.8 MB
-Overall Peak Process Memory Usage: 1134.17 MB
+Average GPU Utilization: 48.2%
+Average GPU Power Draw: 46.2 W
+Approx Total GPU Energy Consumed (Run 1): 6.32 J
+Average Process Memory Usage: 1126.1 MB
+Overall Peak Process Memory Usage: 1132.59 MB
