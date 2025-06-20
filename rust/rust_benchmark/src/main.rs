@@ -232,7 +232,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                 let logits = net.forward_t(&images, true); 
                 let loss = logits.cross_entropy_for_logits(&labels);
-                opt.backward_step(&loss); 
+                
+                opt.zero_grad();
+                loss.backward();
+                opt.step();
 
                 train_correct_count += logits.argmax(1, false).eq_tensor(&labels).sum(Kind::Int64).int64_value(&[]); 
             }

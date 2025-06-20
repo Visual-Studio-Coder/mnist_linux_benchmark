@@ -103,11 +103,7 @@ train_images, train_labels = train_images.to(device), train_labels.to(device)
 test_images, test_labels = test_images.to(device), test_labels.to(device)
 print("Dataset pre-loaded.")
 
-train_dataset_gpu = torch.utils.data.TensorDataset(train_images, train_labels)
-test_dataset_gpu = torch.utils.data.TensorDataset(test_images, test_labels)
-
-train_loader = torch.utils.data.DataLoader(train_dataset_gpu, batch_size=BATCH_SIZE, shuffle=True)
-test_loader = torch.utils.data.DataLoader(test_dataset_gpu, batch_size=BATCH_SIZE, shuffle=False)
+# No longer need DataLoader, as we will manually batch from GPU tensors
 
 class MLP(nn.Module):
     def __init__(self):
@@ -179,30 +175,38 @@ for run in range(NUM_RUNS):
         epoch_writer = csv.writer(epoch_metrics_file)
         epoch_writer.writerow(['epoch', 'train_accuracy', 'valid_accuracy', 'epoch_time'])
 
+    total_train_size = len(train_images)
+    total_test_size = len(test_images)
+
     for epoch in range(EPOCHS):
         epoch_start_time = time.time()
         model.train()
-        train_correct, train_total = 0, 0
-        for inputs, labels in train_loader:
+        train_correct, train_samples_processed = 0, 0
+        
+        # Manual batching loop
+        indices = torch.randperm(total_train_size, device=device)
+        for i in range(0, total_train_size, BATCH_SIZE):
+            batch_indices = indices[i:i+BATCH_SIZE]
+            inputs = train_images.index_select(0, batch_indices)
+            labels = train_labels.index_select(0, batch_indices)
+
             optimizer.zero_grad()
             outputs = model(inputs)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
             _, predicted = torch.max(outputs.data, 1)
-            train_total += labels.size(0)
+            train_samples_processed += labels.size(0)
             train_correct += (predicted == labels).sum().item()
-        train_accuracy = 100 * train_correct / train_total
+        train_accuracy = 100 * train_correct / train_samples_processed
 
         model.eval()
-        valid_correct, valid_total = 0, 0
         with torch.no_grad():
-            for inputs, labels in test_loader:
-                outputs = model(inputs)
-                _, predicted = torch.max(outputs.data, 1)
-                valid_total += labels.size(0)
-                valid_correct += (predicted == labels).sum().item()
-        valid_accuracy = 100 * valid_correct / valid_total
+            # Evaluate on the entire test set at once
+            outputs = model(test_images)
+            _, predicted = torch.max(outputs.data, 1)
+            valid_correct = (predicted == test_labels).sum().item()
+        valid_accuracy = 100 * valid_correct / total_test_size
         
         epoch_duration = time.time() - epoch_start_time
         run_epoch_times.append(epoch_duration)
