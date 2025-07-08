@@ -1,7 +1,7 @@
 # Unlocking Efficiency: A Multi-Language Benchmarking Study on MNIST
 #### Authored by [Vaibhav Satishkumar](https://github.com/Visual-Studio-Coder) and [Yicheng "Billy" Lu](https://github.com/billylu24/)
 
-Cornell arXiv link: \_\_\_\_\_\_*available this Monday 20:00 ET (hopefully)*\_\_\_\_\_\_\_
+Cornell arXiv link: \_\_\_\_\_\_*submission in queue still*\_\_\_\_\_\_\_
 
 ## MNIST Benchmark (Python, C++, Rust)
 
