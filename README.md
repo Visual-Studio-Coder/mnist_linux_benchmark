@@ -49,6 +49,7 @@ The methodology for data collection, model architecture, and hyperparameter tuni
 ## Citations
 
 If you use this code or reference our results in your research, please cite our paper.
+> Vaibhav Satishkumar, Yicheng "Billy" Lu. Unlocking Efficiency: A Multi-Language Benchmarking Study on MNIST. *TechRxiv*. July 19, 2025. DOI: 10.36227/techrxiv.175295288.85168709/v1
 
 > [Citation will be added here upon formal publication in PeerJ Computer Science]
 
